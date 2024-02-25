@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Ranking</title>
+</head>
+<body>
+    <h1>Employee Ranking System</h1>
+
+    <form id="employeeForm">
+        <label for="numEmployees">Enter the number of employees:</label>
+        <input type="number" id="numEmployees" required>
+        <button type="button" onclick="inputEmployeeData()">Input Employee Data</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function rankEmployees(employees) {
+            let rankedEmployees = [];
+
+            for (const employee of employees) {
+                const yearsOfExperience = employee['experience'];
+
+                if (yearsOfExperience >= 8) {
+                    employee['level'] = 'Executive';
+                } else if (yearsOfExperience >= 3) {
+                    employee['level'] = 'Mid-level';
+                } else {
+                    employee['level'] = 'Entry-level';
+                }
+
+                rankedEmployees.push(employee);
+            }
+
+            return rankedEmployees;
+        }
+
+        function inputEmployeeData() {
+            const numEmployees = document.getElementById('numEmployees').value;
+            const employeeData = [];
+
+            for (let i = 0; i < numEmployees; i++) {
+                const name = prompt("Enter employee's full name:");
+                const experience = parseInt(prompt("Enter employee's years of experience:"));
+                employeeData.push({'name': name, 'experience': experience});
+            }
+
+            const rankedEmployeesData = rankEmployees(employeeData);
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = "<h2>Ranked Employees:</h2>";
+
+            for (const employee of rankedEmployeesData) {
+                resultDiv.innerHTML += `<p>${employee['name']} - Experience: ${employee['experience']} years, Level: ${employee['level']}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
