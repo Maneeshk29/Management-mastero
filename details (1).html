@@ -1,0 +1,81 @@
+@ -0,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details Page</title>
+    <style>
+        header {
+            text-align: center;
+        }
+        .question-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Details</h1>
+    </header>
+
+    <main>
+        <button onclick="showQuestion()">Enter Details Here</button>
+
+
+
+        <div class="question-container" id="employee-count-container" style="display: none;">
+            <h2>How many employees do you have in your company?</h2>
+            <input type="number" id="employeeCount">
+            <button onclick="submitEmployeeCount()">Submit</button>
+        </div>
+        <div class="question-container" id="question-popup" style="display: none;">
+            <label for="question">List all employees, first and last names separated by commas:</label>
+            <input type="text" id="question" name="question" placeholder="e.g., John,Doe">
+            <button onclick="askQuestion()">Submit</button>
+        </div>
+        <div class="question-container" id="employee-list-popup" style="display: none;">
+            <label for="employeeList">List all employees, first and last separated by (,):</label>
+            <input type="text" id="employeeList" name="employeeList" placeholder="e.g., John,Doe">
+            <button onclick="submitEmployeeList()">Submit</button>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Footer content goes here -->
+    </footer>
+
+    <script>
+        function showQuestion() {
+            document.getElementById('employee-count-container').style.display = 'block';
+        }
+
+        function submitEmployeeCount() {
+            var employeeCount = document.getElementById('employeeCount').value;
+            if (employeeCount && !isNaN(employeeCount)) {
+                document.getElementById('employee-count-container').style.display = 'none';
+                document.getElementById('question-popup').style.display = 'block';
+            } else {
+                alert("Please enter a valid number for employee count.");
+            }
+        }
+
+        function askQuestion() {
+            document.getElementById('question-popup').style.display = 'none';
+            document.getElementById('employee-list-popup').style.display = 'block';
+        }
+
+        function submitEmployeeList() {
+            var employeeList = document.getElementById('employeeList').value;
+            if (employeeList) {
+                // Here you can handle the submission of the employee list
+                alert("Entered employee list: " + employeeList);
+                // Reset form or proceed as needed
+            } else {
+                alert("Please enter the employee list.");
+            }
+        }
+    </script>
+</body>
+</html>
